@@ -32,6 +32,6 @@ async def on_message(message):
                 if target_channel:
                     # Create a thread in the target channel
                     try:
-                        await target_channel.create_thread(name=thread_name[:50],content=message.content, embeds=message.embeds, files=[await attachment.to_file() for attachment in message.attachments])
+                        await target_channel.create_thread(name=thread_name[:100],content=message.content, embeds=message.embeds, files=[await attachment.to_file() for attachment in message.attachments])
                     except Exception as e:
                         print(e)
