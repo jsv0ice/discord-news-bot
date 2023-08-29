@@ -26,10 +26,12 @@ async def on_message(message):
                 thread_name = thread_name[1:]
             if thread_name[len(thread_name) - 1] == '"':
                 thread_name = thread_name[:(len(thread_name) - 2)]
-            print(thread_name)
              
             for (channel_id,) in subscribed_channels:
                 target_channel = bot.get_channel(int(channel_id))
                 if target_channel:
                     # Create a thread in the target channel
-                    await target_channel.create_thread(name=thread_name[:50],content=message.content, embeds=message.embeds, files=[await attachment.to_file() for attachment in message.attachments])
+                    try:
+                        await target_channel.create_thread(name=thread_name[:50],content=message.content, embeds=message.embeds, files=[await attachment.to_file() for attachment in message.attachments])
+                    except Exception as e:
+                        print(e)
