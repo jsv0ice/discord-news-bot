@@ -37,8 +37,19 @@ class Dropdown(discord.ui.Select):
             if not cursor.fetchone():
                 cursor.execute("INSERT INTO subscriptions (channel, sub) VALUES (?, ?)", (self.target_channel_id, sub))
                 await interaction.response.send_message(f"Your channel has been subscribed to {self.values[0]}")
+                
+                # Get the bot's member object
+                bot_member = interaction.guild.get_member(self.bot.user.id)
+                
+                # Get the target channel object
+                target_channel = discord.utils.get(interaction.guild.channels, id=self.target_channel_id)
+                
+                # Update the channel's permissions to give the bot read and send message permissions
+                await target_channel.set_permissions(bot_member, read_messages=True, send_messages=True)
+                
             else:
                 await interaction.response.send_message(f"Your channel is already subscribed to {self.values[0]}")
+
 
 class UnsubscribeDropdown(discord.ui.Select):
     def __init__(self, bot_: discord.Bot, channel_id):
