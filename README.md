@@ -42,3 +42,9 @@ services:
 - Use the command:
 ```/subscribe``` and select the desired forum channel
 - Select from the dropdown the desired source channel to subscribe to
+- Give the Role 'News Bot' access to view and post to the channel if necessary
+
+## Update the Bot
+- ```docker-compose down```
+- ```docker-compose pull```
+- ```docker-compose up```
