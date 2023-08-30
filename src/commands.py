@@ -36,9 +36,20 @@ class Dropdown(discord.ui.Select):
             cursor.execute("SELECT * FROM subscriptions WHERE channel=? AND sub=?", (self.target_channel_id, sub))
             if not cursor.fetchone():
                 cursor.execute("INSERT INTO subscriptions (channel, sub) VALUES (?, ?)", (self.target_channel_id, sub))
-                await interaction.response.send_message(f"Your channel has been subscribed to {self.values[0]}")
+                
+                # Check if the bot has the required permissions in the target channel
+                target_channel = self.bot.get_channel(self.target_channel_id)
+                permissions = target_channel.permissions_for(target_channel.guild.me)
+                if not permissions.read_messages or not permissions.send_messages:
+                    await interaction.response.send_message(
+                        f"Your channel has been subscribed to {self.values[0]}. However, the bot doesn't have the required permissions to view and post in that channel. "
+                        "Please grant the 'View Channel' permissions to the bot's role in that channel."
+                    )
+                else:
+                    await interaction.response.send_message(f"Your channel has been subscribed to {self.values[0]}")
             else:
                 await interaction.response.send_message(f"Your channel is already subscribed to {self.values[0]}")
+
 
 class UnsubscribeDropdown(discord.ui.Select):
     def __init__(self, bot_: discord.Bot, channel_id):
@@ -122,3 +133,14 @@ async def view_subscriptions(ctx):
         response += f"Channel: {channel}, Subscribed to: {sub}\n"
 
     await ctx.respond(response)
+
+@bot.slash_command(name="test_access", description="Test the bot's access to the channel")
+@option("channel", discord.ForumChannel)
+async def setup_channel_subscriptions(ctx, channel: discord.ForumChannel):
+    if ctx.author.guild_permissions.manage_guild:  # Check if the user has the 'manage_guild' permission
+        try:
+            await channel.create_thread(name='Test Thread',content='This is a simple Test')
+        except Exception as e:
+            await ctx.respond(str(e))
+    else:
+        await ctx.respond("You don't have the required permissions to use this command.")
