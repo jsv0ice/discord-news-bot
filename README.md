@@ -25,14 +25,31 @@ This is a fairly simple discord bot. With announcement channels generally being 
   - Will create a test post in the forum channel
 
 ## Setup A Distributing Server
-Important: This is only if you want to set up your own ecosystem. If you are a regular server owner that just wants to get updates from the bot, you DO NOT need to do this.
+Important: This is only if you want to set up your own ecosystem. If you are a regular server owner that just wants to get updates from the bot, you DO NOT need to do this. These instructions are generally written for Ubuntu 20+, they should work across most operation systems. However, be aware that the setup for the prerequisites is your responsibility, and I am not going to help you troubleshoot why Docker isn't working. If you don't know how to read docs and set up the prerequisites, you probably shouldn't be trying to do this. 
 
 ## Prerequisites
+- Linux Server
 - Docker
 - Docker Compose
 - Discord Bot / Token (Message Intents)
 - OpenAI API Token
 - Guild ID for your source guild
+
+## Setup Discord Application
+- Set up the following permissions for your Receiver Server Install Link
+  - bot
+    - Send Messages
+    - Create Public Threads
+    - Create Private Threads
+    - Send Messages in Threads
+    - Embed Links
+    - Attach Files
+  - applications.commands
+- Set up the following permissions for your Distributor Server Install Link
+  - bot
+    - Administrator
+  - applications.commands
+- Set up Message Content Intent (Bot)
 
 ## Setup Server
 - Create a channel category called 'subscriptions'
