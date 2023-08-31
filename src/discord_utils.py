@@ -1,5 +1,5 @@
 import requests
-from config import DISCORD_TOKEN, GUILD_ID
+from .config import DISCORD_TOKEN, GUILD_ID
 
 headers = {
     "Authorization": f"Bot {DISCORD_TOKEN}",

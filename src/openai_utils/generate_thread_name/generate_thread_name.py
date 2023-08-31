@@ -1,12 +1,23 @@
 import openai
-from config import OPENAI_TOKEN
+from ...config import OPENAI_TOKEN
 
 openai.api_key = OPENAI_TOKEN
 
 async def generate_thread_name(content, embeds, files):
-    embed_text = ' '.join([embed.description for embed in embeds if embed.description])
-    file_text = ' '.join([file.filename for file in files])
-    combined_text = f"{content} {embed_text} {file_text}"
+    print(content, embeds, files)
+    if embeds:
+        embed_text = ' '.join([embed.description for embed in embeds if embed.description])
+    else:
+        embed_text = ''
+    if files:
+        file_text = ' '.join([file.filename for file in files])
+    else:
+        file_text = ''
+    if content:
+        content_text = content
+    else:
+        content_text = ''
+    combined_text = f"{content_text} {embed_text} {file_text}"
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[

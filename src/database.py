@@ -1,5 +1,5 @@
 import sqlite3
-from config import DB_STRING
+from .config import DB_STRING
 
 def initialize_db():
     with sqlite3.connect(DB_STRING) as conn:
