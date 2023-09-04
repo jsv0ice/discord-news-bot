@@ -5,11 +5,12 @@ import googleapiclient.discovery
 import googleapiclient.errors
 from google.oauth2.credentials import Credentials
 import google.auth.transport.requests
+import config
 
 
 # OAuth 2.0 setup
-CLIENT_SECRETS_FILE = "app/data/client_secret.json"
-TOKEN_FILE = "app/data/oauth_token.json"
+CLIENT_SECRETS_FILE = config.SECRET_SOURCE + "client_secret.json"
+TOKEN_FILE = config.SECRET_SOURCE + "oauth_token.json"
 SCOPES = ["https://www.googleapis.com/auth/youtube.force-ssl"]
 
 def authenticate():
