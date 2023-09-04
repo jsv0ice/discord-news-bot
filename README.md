@@ -56,7 +56,7 @@ Important: This is only if you want to set up your own ecosystem. If you are a r
 - Go to the google developer's console and download your client secret json. 
 - Rename it to client_secret.json
 - Store it in your data folder (the same place that your database will be stored)
-- When the bot first runs, it will give you a url to go to - you need to click this and sign in. This should only need to happen once, but if you notice errors around youtube, you may have to do this again in the future. 
+- It is recommended that you run this locally first in a development environment to generate your oauth_token.json and then transfer both the client_secret.json and oauth_token.json to your production server. This removes the need to click the oauth link in an environment you may not have physical access to. 
 
 ## Setup Server
 - Create a channel category called 'subscriptions'
@@ -75,8 +75,10 @@ services:
       - DISCORD_TOKEN=<Insert your Discord Bot Token>
       - OPENAI_TOKEN=<Insert your OpenAI API Key>
       - SOURCE_GUILD_ID=<Insert the Source GUILD ID>
-      - DB_STRING=/app/data/subscriptions.db
-    restart: unless-stopped    
+      - DATABASE_SOURCE=/app/data/subscriptions.db
+      - YOUTUBE_API_KEY=<Insert your YOUTUBE API KEY HERE>
+      - SECRET_SOURCE=/app/data/
+    restart: unless-stopped
 ```
 2. Create a 'data' directory in the same folder you have your docker-compose. This directory will store the subscriptions.db SQLite database, ensuring data persistence across container rebuilds or restarts.
 ```mkdir data```
