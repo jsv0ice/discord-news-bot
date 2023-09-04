@@ -8,8 +8,8 @@ import google.auth.transport.requests
 
 
 # OAuth 2.0 setup
-CLIENT_SECRETS_FILE = "src/youtube_utils/client_secret.json"
-TOKEN_FILE = "src/youtube_utils/oauth_token.json"
+CLIENT_SECRETS_FILE = "app/data/client_secret.json"
+TOKEN_FILE = "app/data/oauth_token.json"
 SCOPES = ["https://www.googleapis.com/auth/youtube.force-ssl"]
 
 def authenticate():

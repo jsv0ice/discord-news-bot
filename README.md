@@ -34,6 +34,7 @@ Important: This is only if you want to set up your own ecosystem. If you are a r
 - Discord Bot / Token (Message Intents)
 - OpenAI API Token
 - Guild ID for your source guild
+- YouTube Developer API
 
 ## Setup Discord Application
 - Set up the following permissions for your Receiver Server Install Link
@@ -50,6 +51,12 @@ Important: This is only if you want to set up your own ecosystem. If you are a r
     - Administrator
   - applications.commands
 - Set up Message Content Intent (Bot)
+
+## Set Up Youtube - TODO
+- Go to the google developer's console and download your client secret json. 
+- Rename it to client_secret.json
+- Store it in your data folder (the same place that your database will be stored)
+- When the bot first runs, it will give you a url to go to - you need to click this and sign in. This should only need to happen once, but if you notice errors around youtube, you may have to do this again in the future. 
 
 ## Setup Server
 - Create a channel category called 'subscriptions'
