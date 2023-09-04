@@ -2,6 +2,8 @@ import discord
 from ...discord_utils import *
 from ...config import bot, DB_STRING
 from ..unsubscribe_dropdown.unsubscribe_dropdown import UnsubscribeDropdown
+from discord import commands
+import sqlite3
 
 @bot.slash_command(name="unsubscribe", description="Unsubscribe from a topic in this channel")
 @discord.option("channel", discord.ForumChannel)

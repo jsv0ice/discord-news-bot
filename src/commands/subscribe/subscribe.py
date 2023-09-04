@@ -4,6 +4,7 @@ from ...discord_utils import *
 from ...openai_utils.generate_thread_name.generate_thread_name import *
 from ...config import bot, DB_STRING
 from ..subscribe_dropdown.subscribe_dropdown import SubscribeDropdown
+from discord import commands
 
 @bot.slash_command(name="subscribe", description="Set up subscriptions in this channel")
 @discord.option("channel", discord.ForumChannel)

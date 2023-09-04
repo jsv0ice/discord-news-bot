@@ -7,6 +7,7 @@ from ...config import bot, DB_STRING
 from discord import option
 from ...youtube_utils.youtube_checker import check_new_video
 
+
 channels = fetch_channels()
 
 @bot.slash_command(name="test_access", description="Test the bot's access to the channel")
@@ -19,8 +20,3 @@ async def test_access(ctx, channel: discord.ForumChannel):
             await ctx.respond(str(e))
     else:
         await ctx.respond("You don't have the required permissions to use this command.")
-
-@bot.slash_command(name="check_youtube", description="manually check youtube")
-async def check_youtube(ctx):
-    video_data = await check_new_video()
-    await ctx.respond(str(video_data))
