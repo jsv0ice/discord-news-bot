@@ -5,7 +5,7 @@ import googleapiclient.discovery
 import googleapiclient.errors
 from google.oauth2.credentials import Credentials
 import google.auth.transport.requests
-import config
+import ..config
 
 
 # OAuth 2.0 setup
