@@ -4,7 +4,7 @@ from discord import Embed
 from ...youtube_utils.youtube_checker import check_new_video
 import sqlite3
 
-@tasks.loop(seconds=300)
+@tasks.loop(seconds=3000)
 async def check_youtube_periodically():
     try:
         with sqlite3.connect(DB_STRING) as conn:
