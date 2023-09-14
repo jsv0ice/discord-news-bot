@@ -33,11 +33,6 @@ async def check_new_video(channel_id):
 
     video_url = f"https://www.youtube.com/watch?v={video_id}"
 
-    #try:
-    #    transcript = get_transcript(video_id)  # Placeholder function to retrieve transcript
-    #except Exception as e:
-    #    transcript = None
-    #    print('Error getting transcript')
     transcript = str(video_data.get('description'))
 
     with sqlite3.connect(config.DB_STRING) as conn:
@@ -78,41 +73,3 @@ async def check_new_video(channel_id):
                 "channel_name": channel_name,
                 "thumbnail_url": thumbnail_url
             }
-
-    
-
-def get_transcript(video_id):
-    #doesn't work for now, need to work with individual content providers to get access to captions
-    print(video_id)
-    print(config.youtube_client)
-    try:
-        # List the captions available for the video
-        captions_list = config.youtube_client.captions().list(
-            part="snippet",
-            videoId=video_id
-        ).execute()
-        print(captions_list)
-
-        # Check if there are any captions available
-        if not captions_list["items"]:
-            return "No captions available for video " + video_id
-
-        # Get the first caption track ID (you can modify this to select a specific language if needed)
-        caption_id = captions_list["items"][0]["id"]
-
-        # Download the caption track
-        caption = config.youtube_client.captions().download(
-            id=caption_id
-        ).execute()
-
-        caption_decode = caption.decode('utf-8')
-        print(caption_decode)
-
-        return caption_decode  # Convert bytes to string
-
-    except Exception as e:
-        print(e)
-        return "Error fetching transcript for video " + video_id
-
-
-{'kind': 'youtube#searchListResponse', 'etag': 'n0o2de5s07xU36aoyZhtQASjA_g', 'nextPageToken': 'CAEQAA', 'regionCode': 'US', 'pageInfo': {'totalResults': 291, 'resultsPerPage': 1}, 'items': [{'kind': 'youtube#searchResult', 'etag': 'BCQtuILQSsz-yjIPKyKvY9Oac0Q', 'id': {'kind': 'youtube#video', 'videoId': 'bR6kHdFx9ss'}, 'snippet': {'publishedAt': '2023-08-31T17:31:45Z', 'channelId': 'UCRiVHK_3XpMqXkkZsW4g8Tg', 'title': 'Will GPT AI obsolete all the new RPGs including Starfield?', 'description': 'GPT may make how characters have been in RPGs for three decades become obsolete. Go to my sponsor ...', 'thumbnails': {'default': {'url': 'https://i.ytimg.com/vi/bR6kHdFx9ss/default.jpg', 'width': 120, 'height': 90}, 'medium': {'url': 'https://i.ytimg.com/vi/bR6kHdFx9ss/mqdefault.jpg', 'width': 320, 'height': 180}, 'high': {'url': 'https://i.ytimg.com/vi/bR6kHdFx9ss/hqdefault.jpg', 'width': 480, 'height': 360}}, 'channelTitle': "Ray's Guide", 'liveBroadcastContent': 'none', 'publishTime': '2023-08-31T17:31:45Z'}}]}

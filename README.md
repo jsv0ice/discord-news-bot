@@ -4,7 +4,7 @@
 
 This is a fairly simple discord bot. With announcement channels generally being text channels, it can be very annoying to follow those while allowing people to interact with the content. 
 
-## Setup Receiving Servers
+## Setup Receiving Servers (for the default instance of this bot)
 - Install the bot: https://discord.com/api/oauth2/authorize?client_id=1145773015318155316&permissions=103079266304&scope=bot%20applications.commands
 - Create a forum channel
 - ```/test_access``` will create a test post in the channel to make sure the bot ("News Bot" Role) can see and post properly
@@ -52,12 +52,6 @@ Important: This is only if you want to set up your own ecosystem. If you are a r
   - applications.commands
 - Set up Message Content Intent (Bot)
 
-## Set Up Youtube - TODO
-- Go to the google developer's console and download your client secret json. 
-- Rename it to client_secret.json
-- Store it in your data folder (the same place that your database will be stored)
-- It is recommended that you run this locally first in a development environment to generate your oauth_token.json and then transfer both the client_secret.json and oauth_token.json to your production server. This removes the need to click the oauth link in an environment you may not have physical access to. 
-
 ## Setup Server
 - Create a channel category called 'subscriptions'
 - Create at least one channel to serve as your source
@@ -82,11 +76,12 @@ services:
 ```
 2. Create a 'data' directory in the same folder you have your docker-compose. This directory will store the subscriptions.db SQLite database, ensuring data persistence across container rebuilds or restarts.
 ```mkdir data```
-3. Install the bot in your source server: https://discord.com/api/oauth2/authorize?client_id=1145773015318155316&permissions=377957141520&scope=bot%20applications.commands
+3. Install the bot in your source server: https://discord.com/api/oauth2/authorize?client_id=<*INSERT YOUR BOTS CLIENT ID HERE*>&permissions=377957141520&scope=bot%20applications.commands
 4. Start the Docker Container
 ```docker-compose up```
 
+## Distribute the Bot
+You will need to create your own installation link based on https://discord.com/api/oauth2/authorize?client_id=<*INSERT YOUR BOTS CLIENT ID HERE*>&permissions=103079266304&scope=bot%20applications.commands
+
 ## Update the Bot
-- ```docker-compose down```
-- ```docker-compose pull```
-- ```docker-compose up```
+- ```sudo docker-compose down && sudo docker-compose pull && sudo docker-compose up```
