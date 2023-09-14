@@ -15,5 +15,8 @@ def initialize_db():
         cursor.execute('''CREATE TABLE IF NOT EXISTS watch_channel
                           (youtube_channel_id TEXT NOT NULL, youtube_channel_name TEXT NOT NULL, discord_channel_id TEXT NOT NULL)''')
         
+        cursor.execute('''CREATE TABLE IF NOT EXISTS message_tracking
+                  (message_id TEXT PRIMARY KEY NOT NULL, content TEXT NOT NULL, sent_status INTEGER NOT NULL, target_channels TEXT)''')
+        
         conn.commit()
 
