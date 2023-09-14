@@ -4,7 +4,7 @@ from ...database import *
 from ...discord_utils import *
 from ...openai_utils.generate_thread_name.generate_thread_name import *
 from ...config import bot, GUILD_ID, DB_STRING
-from ...discord_utils.send_error_dm.send_error_dm import send_error_dm
+from ...discord_utils import send_error_dm
 
 channels = fetch_channels()
 
