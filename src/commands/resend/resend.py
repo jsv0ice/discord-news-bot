@@ -1,11 +1,12 @@
+import discord
 from ...config import bot, GUILD_ID
 from ...events.on_message.on_message import on_message
 
-@bot.slash_command(name="resend", description="Resend this message", guilds=[str(GUILD_ID)])
-async def resend(ctx):
+@bot.message_command(name="resend", description="Resend this message", guild_ids=[str(GUILD_ID)])
+async def resend(ctx, message: discord.Message):
     if ctx.author.guild_permissions.manage_guild:  # Check if the user has the 'manage_guild' permission
         try:
-            message = await ctx.channel.fetch_message(ctx.target_message_id)
+            message = await ctx.channel.fetch_message(message.id)
             await on_message(message)
         except ValueError as e:
             await ctx.respond(str(e))
