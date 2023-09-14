@@ -11,6 +11,7 @@ async def on_ready():
     print(f"Bot is connected as {bot.user}")
 
 async def process_backlog_messages():
+    return
     with sqlite3.connect(DB_STRING) as conn:
         cursor = conn.cursor()
         
@@ -22,7 +23,7 @@ async def process_backlog_messages():
             last_message_id = last_message_id[0]
             
             # Get the channels subscribed to
-            cursor.execute("SELECT DISTINCT channel FROM subscriptions")
+            cursor.execute("SELECT DISTINCT sub FROM subscriptions")
             subscribed_channels = cursor.fetchall()
             
             for (channel_id,) in subscribed_channels:
