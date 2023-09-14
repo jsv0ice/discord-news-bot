@@ -29,7 +29,7 @@ async def process_backlog_messages():
                 target_channel = bot.get_channel(int(channel_id))
                 
                 if target_channel:
-                    async for message in target_channel.history(limit=5, after=discord.Object(id=int(last_message_id)), oldest_first=True):
+                    async for message in target_channel.history(limit=5, oldest_first=True):
                         await on_message(message)
         else:
             print("No previous message found in the database.")
