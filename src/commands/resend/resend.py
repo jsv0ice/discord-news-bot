@@ -8,6 +8,7 @@ async def resend(ctx, message: discord.Message):
         try:
             message = await ctx.channel.fetch_message(message.id)
             await on_message(message)
+            ctx.respond("Message resent.")
         except ValueError as e:
             await ctx.respond(str(e))
     else:
