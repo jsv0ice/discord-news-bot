@@ -58,7 +58,7 @@ async def on_message(message):
                         
                     except Exception as e:
                         # Update the sent_status to -1 for error
-                        cursor.execute(" "UPDATE message_tracking SET sent_status = -1 WHERE message_id = ?", (message_id,))
+                        cursor.execute("UPDATE message_tracking SET sent_status = -1 WHERE message_id = ?", (message_id,))
                         conn.commit()
                         
                         # Update the target_channels to include the error channel
