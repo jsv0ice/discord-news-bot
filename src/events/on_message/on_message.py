@@ -8,7 +8,7 @@ from ...discord_utils.send_error_dm.send_error_dm import send_error_dm
 
 channels = fetch_channels()
 
-@@bot.event
+@bot.event
 async def on_message(message):
     if str(message.guild.id) == str(GUILD_ID):
         
