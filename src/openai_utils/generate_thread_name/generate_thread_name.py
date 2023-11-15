@@ -23,7 +23,7 @@ async def generate_thread_name(content, embeds, files):
         messages=[
             {"role": "system", "content": "You are a forum power user, and you are creating the perfect post title to summarize the content you receive."},
             {"role": "system", "content": "You will respond only with the perfect title, and nothing else"},
-            {"role": "user", "content": combined_text},
+            {"role": "user", "content": combined_text[0:2000]},
         ]
     )
     return(response['choices'][0]['message']['content'])
