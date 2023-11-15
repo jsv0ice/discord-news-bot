@@ -38,7 +38,7 @@ async def on_message(message):
                 target_channel = bot.get_channel(int(channel_id))
                 if target_channel:
                     try:
-                        thread = await target_channel.create_thread(
+                        await target_channel.create_thread(
                             name=thread_name[:100],
                             content=message.content,
                             embeds=message.embeds,
